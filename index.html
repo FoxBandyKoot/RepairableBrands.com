@@ -31,10 +31,67 @@
             </div>
         </section>
         
+        <section id="contact">
+            <h2>Recommander une marque</h2>
+            <p>Vous connaissez une marque réparable et écologique ? Partagez votre recommandation !</p>
+            <form class="recommendation-form" action="https://formspree.io/f/xyzabc" method="POST">
+                <div class="form-group">
+                    <label for="name">Votre nom *</label>
+                    <input type="text" id="name" name="name" required maxlength="100" placeholder="Jean Dupont">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Votre email *</label>
+                    <input type="email" id="email" name="email" required maxlength="100" placeholder="votre@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="brand">Nom de la marque *</label>
+                    <input type="text" id="brand" name="brand" required maxlength="150" placeholder="Nom de la marque">
+                </div>
+                
+                <div class="form-group">
+                    <label for="website">Site web de la marque</label>
+                    <input type="url" id="website" name="website" maxlength="200" placeholder="https://www.exemple.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reason">Pourquoi recommandez-vous cette marque ? *</label>
+                    <textarea id="reason" name="reason" required maxlength="500" rows="5" placeholder="Décrivez en maximum 500 caractères pourquoi cette marque est réparable et écologique..."></textarea>
+                    <small id="charCount">0 / 500 caractères</small>
+                </div>
+                
+                <input type="hidden" name="_to" value="lerenard.charly@gmail.com">
+                <input type="hidden" name="_subject" value="Nouvelle recommandation de marque - Marques Réparables">
+                <input type="hidden" name="_captcha" value="false">
+                <button type="submit" class="btn-submit">Envoyer la recommandation</button>
+            </form>
+        </section>
+        
     </main>
     
     <footer>
         <p>&copy; 2026 Marques réparables. Tous droits réservés.</p>
     </footer>
+    
+    <script>
+        // Compteur de caractères pour la description
+        const reasonTextarea = document.getElementById('reason');
+        const charCount = document.getElementById('charCount');
+        
+        if (reasonTextarea) {
+            reasonTextarea.addEventListener('input', function() {
+                const count = this.value.length;
+                charCount.textContent = count + ' / 500 caractères';
+                if (count > 450) {
+                    charCount.style.color = '#ff6b6b';
+                } else if (count > 400) {
+                    charCount.style.color = '#ffa94d';
+                } else {
+                    charCount.style.color = '#666';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
